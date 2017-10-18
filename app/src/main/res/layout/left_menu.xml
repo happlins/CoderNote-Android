@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#666">
+
+    <LinearLayout
+        android:id="@+id/logout_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/unlog_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/user_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/biz_tie_user_avater_default_common" />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/user_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="登录后，将推荐给你更多感兴趣的文章"
+            android:textColor="#ffb8b8b8"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/navigation_list"
+        android:layout_below="@id/logout_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="275dp"
+            android:id="@+id/menu_listview">
+
+        </ListView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/item_6"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/navigation_list"
+        android:gravity="center"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="新建目录"/>
+
+    </LinearLayout>
+</RelativeLayout>
+
