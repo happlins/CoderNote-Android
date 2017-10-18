@@ -1,6 +1,7 @@
 package com.example.codernote.util;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.dd.processbutton.ProcessButton;
 import com.dd.processbutton.iml.ActionProcessButton;
@@ -20,47 +21,35 @@ import okhttp3.Response;
 public class ProgressGenerator {
 
 
-
-    public interface OnCompleteListener{
+    public interface OnCompleteListener {
         public void onComplete(String complete);
+
         public void onError(String error);
     }
 
 
     private OnCompleteListener mListener;
-    private int mProgress;
+
+    private int mProgress = 10;
 
     public ProgressGenerator(OnCompleteListener mListener) {
         this.mListener = mListener;
     }
 
-    public void start(final ProcessButton button,final User user){
-        final Handler handler = new Handler();
-
-        handler.postDelayed(new Runnable() {
+    public void start(final ProcessButton button, final User user) {
+        button.setProgress(mProgress);
+        HttpUtil.login("http://192.168.137.138:9999/user/login", user, new Callback() {
             @Override
-            public void run() {
-                button.setProgress(mProgress);
-                handler.postDelayed(this,generateDelay());
-                HttpUtil.login("http://192.168.137.138:9999/user/login", user, new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        mListener.onError(e.toString());
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                       String result =  response.body().toString();
-                        mListener.onComplete(result);
-                    }
-                });
+            public void onFailure(Call call, IOException e) {
+                mListener.onError(e.toString());
             }
-        },generateDelay());
-    }
 
-    private Random random = new Random();
-
-    private int generateDelay(){
-        return random.nextInt(1000);
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String result = response.body().string().toString();
+                Log.d(result, "onResponse");
+                mListener.onComplete(result);
+            }
+        });
     }
 }

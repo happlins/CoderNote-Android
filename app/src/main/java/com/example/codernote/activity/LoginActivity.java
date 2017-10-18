@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -120,5 +121,6 @@ public class LoginActivity extends AppCompatActivity implements ProgressGenerato
 
     @Override
     public void onError(String error) {
+        Log.d(error,"登陆失败");
     }
 }

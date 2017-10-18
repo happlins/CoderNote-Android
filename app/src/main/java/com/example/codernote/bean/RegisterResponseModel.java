@@ -1,4 +1,4 @@
-package edu.cap.jaylin.codernote.model;
+package com.example.codernote.bean;
 
 /**
  * @author Jaylin

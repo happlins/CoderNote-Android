@@ -1,6 +1,6 @@
-package edu.cap.jaylin.codernote.model;
+package com.example.codernote.bean;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * 登录请求Model
@@ -12,13 +12,13 @@ public class LoginRequestModel {
     /**
      * 用户名
      */
-    @JSONField(name = "username")
+    @SerializedName("username")
     private String userName;
 
     /**
      * 密码
      */
-    @JSONField(name = "password")
+    @SerializedName("password")
     private String passWord;
 
     public String getUserName() {

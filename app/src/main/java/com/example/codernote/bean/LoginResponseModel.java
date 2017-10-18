@@ -1,8 +1,4 @@
-package edu.cap.jaylin.codernote.model;
-
-import org.apache.commons.lang3.CharSetUtils;
-
-import java.nio.charset.Charset;
+package com.example.codernote.bean;
 
 /**
  * 登录请求响应Model
