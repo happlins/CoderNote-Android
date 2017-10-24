@@ -1,3 +1,4 @@
+package com.example.codernote.bean;
 /**
  * 响应代码
  *

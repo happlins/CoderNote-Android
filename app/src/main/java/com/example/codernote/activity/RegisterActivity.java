@@ -1,7 +1,9 @@
 package com.example.codernote.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,10 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codernote.R;
+import com.example.codernote.bean.RegisterResponseModel;
 import com.example.codernote.bean.RegisterUser;
+import com.example.codernote.bean.ResponseCode;
 import com.example.codernote.util.HttpUtil;
+import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.net.ResponseCache;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -31,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editCPassWord;
     private EditText editEmail;
     private Button registerBtn;
+    final Context context = RegisterActivity.this;
 
 
     @Override
@@ -63,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                     registerUser.setPassWord(password);
 
 
-                    HttpUtil.login("http://codernote.panja.cc:9999/user/register", registerUser, new Callback() {
+                    HttpUtil.login("http://192.168.191.5:9999/user/register", registerUser, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                             Log.d("失败", "失败");
@@ -71,10 +78,29 @@ public class RegisterActivity extends AppCompatActivity {
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                            startActivity(intent);
-                            finish();
+                            Gson gson = new Gson();
+                            final RegisterResponseModel registerResponseModel = gson.fromJson(response.body().string().toString(), RegisterResponseModel.class);
+                            if (registerResponseModel.getCode() == ResponseCode.SUCCESS_REGISTER.getCode()) {
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                                final Handler handler = new Handler(context.getMainLooper());
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(RegisterActivity.this, registerResponseModel.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }, 1);
+                                startActivity(intent);
+                                finish();
+                            } else if (registerResponseModel.getCode() == ResponseCode.ERROR_USERNAME_EXIST.getCode()) {
+                                final Handler handler = new Handler(context.getMainLooper());
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                       Toast.makeText(RegisterActivity.this, registerResponseModel.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }, 1);
+                            }
                         }
                     });
                 } else {

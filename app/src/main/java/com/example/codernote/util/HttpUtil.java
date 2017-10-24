@@ -16,7 +16,7 @@ import okhttp3.RequestBody;
  */
 
 public class HttpUtil {
-    public static final MediaType JSON = MediaType.parse("application/json:charset=utf-8");
+    public static final MediaType JSON = MediaType.parse("application/json;charset=utf-8");
 
     public static void login(String address,Object object,okhttp3.Callback callback){
         OkHttpClient client = new OkHttpClient.Builder()

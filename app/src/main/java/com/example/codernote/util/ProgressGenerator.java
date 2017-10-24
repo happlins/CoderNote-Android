@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.dd.processbutton.ProcessButton;
 import com.dd.processbutton.iml.ActionProcessButton;
@@ -41,9 +42,9 @@ public class ProgressGenerator {
         this.context = context;
     }
 
-    public void start(final ProcessButton button, final User user, final EditText username,final EditText password) {
+    public void start(final ProcessButton button, final User user, final EditText username, final EditText password, final TextView register) {
         changeUI(button,10);
-        HttpUtil.login("http://192.168.137.138:9999/user/login", user, new Callback() {
+        HttpUtil.login("http://192.168.191.5:9999/user/login", user, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
             }
@@ -57,7 +58,7 @@ public class ProgressGenerator {
                     changeUI(button,100);
                     mListener.onComplete(responseModel.getMessage());
                 }else{
-                    changUIS(button,-1,username,password);
+                    changUIS(button,-1,username,password,register);
                     mListener.onError(responseModel.getMessage());
                 }
             }
@@ -73,7 +74,7 @@ public class ProgressGenerator {
         },1);
     }
 
-    public void changUIS(final ProcessButton button,final int mProgress,final EditText username,final EditText password){
+    public void changUIS(final ProcessButton button,final int mProgress,final EditText username,final EditText password,final TextView register){
         final Handler handler = new Handler(context.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
@@ -82,6 +83,7 @@ public class ProgressGenerator {
                 button.setEnabled(true);
                 username.setEnabled(true);
                 password.setEnabled(true);
+                register.setEnabled(true);
                 button.setProgress(0);
             }
         },1);
