@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements ProgressGenerato
         editName = (EditText)findViewById(R.id.editName);
         editPassword = (EditText) findViewById(R.id.editPassword);
         btnSigIn = (ActionProcessButton)findViewById(R.id.btnSignIn);
-        progressGenerator = new ProgressGenerator(this);
+        progressGenerator = new ProgressGenerator(this,LoginActivity.this);
 
 
         btnSigIn.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements ProgressGenerato
                 user.setUserName(username);
                 user.setPassWord(password);
 
-                progressGenerator.start(btnSigIn,user);
+                progressGenerator.start(btnSigIn,user,editName,editPassword);
                 btnSigIn.setEnabled(false);
                 editName.setEnabled(false);
                 editPassword.setEnabled(false);

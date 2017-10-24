@@ -1,5 +1,7 @@
 package com.example.codernote.util;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
@@ -31,22 +33,5 @@ public class HttpUtil {
                 .build();
         client.newCall(request).enqueue(callback);
     }
-
-    public static void registerUser(String address,Object object,okhttp3.Callback callback){
-        OkHttpClient client = new OkHttpClient.Builder()
-                .readTimeout(200, TimeUnit.SECONDS)
-                .writeTimeout(100,TimeUnit.SECONDS)
-                .connectTimeout(300,TimeUnit.SECONDS)
-                .build();
-        Gson gson = new Gson();
-        String strjson = gson.toJson(object);
-        RequestBody requestBody = RequestBody.create(JSON,strjson);
-        Request request = new Request.Builder()
-                .url(address)
-                .post(requestBody)
-                .build();
-        client.newCall(request).enqueue(callback);
-    }
-
 
 }

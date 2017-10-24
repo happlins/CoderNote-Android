@@ -59,15 +59,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (password.equals(cpassword)) {
                     RegisterUser registerUser = new RegisterUser();
-                    registerUser.setUsername(username);
-                    registerUser.setPassword(password);
-                    registerUser.setEmail(email);
+                    registerUser.setUserName(username);
+                    registerUser.setPassWord(password);
 
 
-                    HttpUtil.registerUser("http://codernote.panja.cc:9999/user/register", registerUser, new Callback() {
+                    HttpUtil.login("http://codernote.panja.cc:9999/user/register", registerUser, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
-                            Log.d("失败","失败");
+                            Log.d("失败", "失败");
                         }
 
                         @Override
@@ -78,7 +77,6 @@ public class RegisterActivity extends AppCompatActivity {
                             finish();
                         }
                     });
-
                 } else {
                     Toast.makeText(RegisterActivity.this, "两次密码不相同，请检查密码", Toast.LENGTH_LONG).show();
                 }
