@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<litepal>
+    <dbname value="CoderNote"></dbname>
+    <version value="1"></version>
+    <list>
+        <mapping class="com.example.codernote.bean.User"></mapping>
+        <mapping class="com.example.codernote.bean.Note"></mapping>
+    </list>
+</litepal>

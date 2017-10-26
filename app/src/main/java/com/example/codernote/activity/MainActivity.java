@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.example.codernote.R;
 import com.example.codernote.adapter.TimelineAdapter;
+import com.example.codernote.bean.Note;
 import com.ikimuhendis.ldrawer.ActionBarDrawerToggle;
 import com.ikimuhendis.ldrawer.DrawerArrowDrawable;
 import com.melnykov.fab.FloatingActionButton;
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private ListView listView;
-    List<String> data;
 
     private TimelineAdapter timelineAdapter;
 
@@ -185,32 +185,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onMenuOpened(featureId, menu);
     }
 
-    public List<Map<String, Object>> getData() {
-        List<Map<String, Object>> list = new ArrayList<>();
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("title", "这是第一行测试数据");
-        list.add(map);
-
-        map = new HashMap<>();
-        map.put("title", "这是第二行测试数据");
-        list.add(map);
-
-        map = new HashMap<>();
-        map.put("title", "这是第三行测试数据");
-        list.add(map);
-
-        map = new HashMap<>();
-        map.put("title", "这是第四行测试数据");
-        list.add(map);
-
-        map = new HashMap<>();
-        map.put("title", "这是第五行测试数据");
-        list.add(map);
-
-        map = new HashMap<>();
-        map.put("title", "这是第六行测试数据");
-        list.add(map);
+    public List<Note> getData() {
+        List<Note> list = new ArrayList<>();
 
         return list;
     }

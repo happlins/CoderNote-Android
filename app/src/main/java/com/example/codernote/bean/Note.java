@@ -53,6 +53,9 @@ public class Note {
      */
     private Boolean noteValid;
 
+    public Note(){
+
+    }
     public Note(String noteId) {
         this.noteId = noteId;
     }
