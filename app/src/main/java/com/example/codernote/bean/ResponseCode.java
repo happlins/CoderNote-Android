@@ -16,6 +16,11 @@ public enum ResponseCode {
     ERROR_INVALID_PASSWORD("密码错误！"),
     ERROR_INVALID_TOKEN("无效的Token！"),
 
+    SUCCESS_SUBMIT_NOTE("笔记添加成功！"),
+    ERROR_SUBMIT_NOTE("笔记添加失败！"),
+
+    ERROR_INVALID_NOTE("无效的笔记！"),
+
     SUCCESS_DELETE("删除成功！")
     ;
 
