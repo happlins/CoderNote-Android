@@ -81,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setCustomView(tvTitle);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
     private void init() {
         listView = (ListView) this.findViewById(R.id.listview);
@@ -113,12 +118,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
     private void initDrawerLayout() {
         drawerLayout = (DrawerLayout) super.findViewById(R.id.drawer_layout);

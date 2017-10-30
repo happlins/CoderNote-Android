@@ -1,5 +1,7 @@
 package com.example.codernote.bean;
 
+import org.litepal.crud.DataSupport;
+
 import java.util.Date;
 
 /**
@@ -7,11 +9,11 @@ import java.util.Date;
  *
  * @author Jaylin
  */
-public class User {
+public class User extends DataSupport{
     /**
      * 用户编号
      */
-    private Object userId;
+    private String userId;
 
     /**
      * 加入的群组
@@ -50,21 +52,12 @@ public class User {
         this.passWord = passWord;
     }
 
-    private User(Builder builder) {
-        setUserId(builder.userId);
-        setTeam(builder.team);
-        setUserName(builder.userName);
-        setPassWord(builder.passWord);
-        setGmtCreate(builder.gmtCreate);
-        setGmtModified(builder.gmtModified);
-        setUserValid(builder.userValid);
-    }
 
-    public Object getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Object userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -117,54 +110,4 @@ public class User {
     }
 
 
-    public static final class Builder {
-        private Object userId;
-        private Object team;
-        private String userName;
-        private String passWord;
-        private Date gmtCreate;
-        private Date gmtModified;
-        private Boolean userValid;
-
-        public Builder() {}
-
-        public Builder withUserId(Object val) {
-            userId = val;
-            return this;
-        }
-
-        public Builder withTeam(Object val) {
-            team = val;
-            return this;
-        }
-
-        public Builder withUserName(String val) {
-            userName = val;
-            return this;
-        }
-
-        public Builder withPassWord(String val) {
-            passWord = val;
-            return this;
-        }
-
-        public Builder withGmtCreate(Date val) {
-            gmtCreate = val;
-            return this;
-        }
-
-        public Builder withGmtModified(Date val) {
-            gmtModified = val;
-            return this;
-        }
-
-        public Builder withUserValid(Boolean val) {
-            userValid = val;
-            return this;
-        }
-
-        public User build() {
-            return new User(this);
-        }
-    }
 }

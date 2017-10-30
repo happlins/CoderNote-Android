@@ -1,5 +1,7 @@
 package com.example.codernote.bean;
 
+import org.litepal.crud.DataSupport;
+
 import java.util.Date;
 
 /**
@@ -7,11 +9,11 @@ import java.util.Date;
  *
  * @author Jaylin
  */
-public class Note {
+public class Note extends DataSupport {
     /**
      * 笔记编号
      */
-    private Object noteId;
+    private String noteId;
 
     /**
      * 名称
@@ -60,11 +62,11 @@ public class Note {
         this.noteId = noteId;
     }
 
-    public Object getNoteId() {
+    public String getNoteId() {
         return noteId;
     }
 
-    public void setNoteId(Object noteId) {
+    public void setNoteId(String noteId) {
         this.noteId = noteId;
     }
 

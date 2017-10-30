@@ -102,6 +102,8 @@ public class CreateActivity extends AppCompatActivity {
                                        Toast.makeText(CreateActivity.this, update.getMessage(), Toast.LENGTH_LONG).show();
                                    }
                                }, 1);
+                               Note dataNote = new Note();
+
                                Intent intent = new Intent(CreateActivity.this,MainActivity.class);
                                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                                startActivity(intent);
